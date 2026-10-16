@@ -3,27 +3,43 @@ import secrets
 import sqlite3
 
 conn = sqlite3.connect(":memory:")
-conn.execute("CREATE TABLE pets (id INTEGER PRIMARY KEY, name TEXT, species TEXT, age INTEGER, adopted INTEGER)")
+conn.execute(
+    "CREATE TABLE pets (id INTEGER PRIMARY KEY, name TEXT, species TEXT, "
+    "age INTEGER, adopted INTEGER)"
+)
 
 
 def register_pet(name, species, age, tags=None):
-    """Add a new, not-yet-adopted pet and return the tag list with its species."""
+    """Add a new, not-yet-adopted pet.
+
+    Returns the tag list with the pet's species appended.
+    """
     if tags is None:
         tags = []
-    conn.execute("INSERT INTO pets (name, species, age, adopted) VALUES (?, ?, ?, 0)", (name, species, age))
+    conn.execute(
+        "INSERT INTO pets (name, species, age, adopted) VALUES (?, ?, ?, 0)",
+        (name, species, age),
+    )
     tags.append(species)
     return tags
 
 
 def adopt(pet_id):
-    """Mark the pet with the given id as adopted. Return True if a pet was updated."""
-    cur = conn.execute("UPDATE pets SET adopted = 1 WHERE id = ? AND adopted = 0", (pet_id,))
+    """Mark the pet with the given id as adopted.
+
+    Returns True if an available pet was found and updated.
+    """
+    cur = conn.execute(
+        "UPDATE pets SET adopted = 1 WHERE id = ? AND adopted = 0", (pet_id,)
+    )
     return cur.rowcount == 1
 
 
 def adoption_count():
     """Return how many pets have been adopted."""
-    return conn.execute("SELECT COUNT(*) FROM pets WHERE adopted = 1").fetchone()[0]
+    query = "SELECT COUNT(*) FROM pets WHERE adopted = 1"
+    row = conn.execute(query).fetchone()
+    return row[0]
 
 
 def adoption_code():
@@ -32,8 +48,10 @@ def adoption_code():
 
 
 def oldest_available():
-    """Return the name of the oldest pet still available, or None if there is none."""
-    row = conn.execute("SELECT name, age FROM pets WHERE adopted = 0 ORDER BY age DESC").fetchone()
+    """Return the oldest available pet's name, or None if there is none."""
+    row = conn.execute(
+        "SELECT name, age FROM pets WHERE adopted = 0 ORDER BY age DESC"
+    ).fetchone()
     if row is None:
         return None
     return row[0]
@@ -48,8 +66,9 @@ def clear_unadopted():
 
 
 def shelter_status():
-    """Return 'active' if at least one adoption has happened, else 'quiet'."""
-    if adoption_count() > 0: return "active"
+    """Return 'active' once any pet has been adopted, else 'quiet'."""
+    if adoption_count() > 0:
+        return "active"
     return "quiet"
 
 
