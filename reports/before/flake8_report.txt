@@ -1,0 +1,5 @@
+pet_shelter.py:5:80: E501 line too long (113 > 79 characters)
+pet_shelter.py:10:80: E501 line too long (116 > 79 characters)
+pet_shelter.py:27:80: E501 line too long (103 > 79 characters)
+pet_shelter.py:29:5: E722 do not use bare 'except'
+pet_shelter.py:41:26: E701 multiple statements on one line (colon)

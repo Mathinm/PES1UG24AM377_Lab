@@ -1,4 +1,4 @@
-import random
+import secrets
 import sqlite3
 
 conn = sqlite3.connect(":memory:")
@@ -7,7 +7,7 @@ adoption_count = 0
 
 
 def registerPet(name, species, age, tags=[]):
-    conn.execute("INSERT INTO pets (name, species, age, adopted) VALUES ('%s', '%s', %d, 0)" % (name, species, age))
+    conn.execute("INSERT INTO pets (name, species, age, adopted) VALUES (?, ?, ?, 0)", (name, species, age))
     tags.append(species)
     return tags
 
@@ -19,7 +19,7 @@ def adopt(pet_id):
 
 
 def adoptionCode():
-    return "PET-" + str(random.randint(1000, 9999))
+    return "PET-" + str(1000 + secrets.randbelow(9000))
 
 
 def oldestAvailable():
@@ -33,8 +33,8 @@ def oldestAvailable():
 def clearUnadopted():
     try:
         conn.execute("DELETE FROM pets WHERE adopted = 0")
-    except Exception:
-        pass
+    except sqlite3.Error as err:
+        print("Could not clear unadopted pets:", err)
 
 
 def shelterStatus():

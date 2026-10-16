@@ -1,0 +1,28 @@
+************* Module pet_shelter
+pet_shelter.py:5:0: C0301: Line too long (113/100) (line-too-long)
+pet_shelter.py:10:0: C0301: Line too long (116/100) (line-too-long)
+pet_shelter.py:27:0: C0301: Line too long (103/100) (line-too-long)
+pet_shelter.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+pet_shelter.py:6:0: C0103: Constant name "adoption_count" doesn't conform to UPPER_CASE naming style (invalid-name)
+pet_shelter.py:9:0: C0116: Missing function or method docstring (missing-function-docstring)
+pet_shelter.py:9:0: C0103: Function name "registerPet" doesn't conform to snake_case naming style (invalid-name)
+pet_shelter.py:9:0: W0102: Dangerous default value [] as argument (dangerous-default-value)
+pet_shelter.py:10:17: C0209: Formatting a regular string which could be an f-string (consider-using-f-string)
+pet_shelter.py:15:0: C0116: Missing function or method docstring (missing-function-docstring)
+pet_shelter.py:16:4: W0603: Using the global statement (global-statement)
+pet_shelter.py:21:0: C0116: Missing function or method docstring (missing-function-docstring)
+pet_shelter.py:21:0: C0103: Function name "adoptionCode" doesn't conform to snake_case naming style (invalid-name)
+pet_shelter.py:25:0: C0116: Missing function or method docstring (missing-function-docstring)
+pet_shelter.py:25:0: C0103: Function name "oldestAvailable" doesn't conform to snake_case naming style (invalid-name)
+pet_shelter.py:29:4: W0702: No exception type(s) specified (bare-except)
+pet_shelter.py:33:0: C0116: Missing function or method docstring (missing-function-docstring)
+pet_shelter.py:33:0: C0103: Function name "clearUnadopted" doesn't conform to snake_case naming style (invalid-name)
+pet_shelter.py:36:11: W0718: Catching too general exception Exception (broad-exception-caught)
+pet_shelter.py:40:0: C0116: Missing function or method docstring (missing-function-docstring)
+pet_shelter.py:40:0: C0103: Function name "shelterStatus" doesn't conform to snake_case naming style (invalid-name)
+pet_shelter.py:41:27: C0321: More than one statement on a single line (multiple-statements)
+pet_shelter.py:45:0: C0116: Missing function or method docstring (missing-function-docstring)
+
+-----------------------------------
+Your code has been rated at 3.95/10
+
